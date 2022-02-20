@@ -78,6 +78,10 @@ router.post("/signup", isLoggedOut, (req, res, next) => {
 // .get() route ==> to display the login form to users
 router.get("/login", isLoggedOut, (req, res) => res.render("auth/login"));
 
+router.get("/user-profile", (req, res) => {       //TROQUEI O ROUTER DE LOGOUT E COLOQUEI AQUI E TIREI O MIDDLEWARE SENAO NAO FUNCIONAVA ? ? ? ?
+  res.render("users/user-profile");
+});
+
 // .post() login route ==> to process form data
 router.post("/login", isLoggedOut, (req, res, next) => {
   const { email, password } = req.body;
@@ -113,8 +117,6 @@ router.post("/logout", isLoggedIn, (req, res) => {
   res.redirect("/");
 });
 
-router.get("/user-profile", isLoggedIn, (req, res) => {
-  res.render("users/user-profile");
-});
+
 
 module.exports = router;
